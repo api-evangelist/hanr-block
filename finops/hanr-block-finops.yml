@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,30 +9,36 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: H&R Block
 providerId: hanr-block
-publisherName: H&R Block
-serviceCategory: API
+publisherName: HRB Tax Group, Inc.
+serviceCategory: Tax Preparation / Financial Services Partner API
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Tax Preparation
   - Financial Services
   - FinOps
   - Cost Management
   - FOCUS
-description: FinOps framework definition for the H&R Block API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: 'FOCUS-aligned FinOps placeholder for H&R Block: no public commercial API. Partner
+  integrations are bilaterally contracted; meters describe partner-side allocation across tax-season
+  workloads.'
+notes: No public commercial model is published. Reconcile against the partner agreement.
+sources:
+  - https://www.hrblock.com/
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Track partner-integration request volume via the H&R Block partner gateway logs;
+      pay particular attention to peak tax-season throughput.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Allocate integration cost across partner business lines (employer W-2 imports,
+      fintech partnerships, retail-channel referrals).
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Cache static reference data; batch tax-document lookups; pre-warm capacity ahead
+      of January–April peak.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Designate a partner-program owner; review API utilization quarterly with extra
+      review post-tax-season.
 domains:
   - name: Understand Usage and Cost
     capabilities:
@@ -61,53 +68,40 @@ domains:
       - Onboarding Workloads
       - Intersecting Disciplines
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
   chargeFrequency: Recurring
 focusColumns:
-  ServiceName: H&R Block
-  ServiceCategory: Developer Tools / API
+  ServiceName: H&R Block API
+  ServiceCategory: Tax Preparation / Financial Services Partner API
   ProviderName: H&R Block
-  PublisherName: H&R Block
-  InvoiceIssuerName: H&R Block
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: HRB Tax Group, Inc.
+  InvoiceIssuerName: HRB Tax Group, Inc.
+  PricingCategory: Subscription
+  PricingUnit: partner-agreement
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
   - name: api_requests
-    description: Count of billable API requests
+    description: Partner-integration request volume (allocation meter)
     unit: request
     aggregation: sum
     dimensions:
-      - api
+      - partner
       - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - season
+  - name: tax_documents_imported
+    description: Tax documents (W-2, 1099, etc.) imported via partner integrations
+    unit: document
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
+      - partner
+      - document_type
 apis:
   - name: H&R Block API
     baseURL: https://api.hrblock.com
@@ -117,11 +111,11 @@ apis:
     serviceName: H&R Block API
     serviceCategory: API
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: Cost per Tax-Filing Season
+    metric: billed_cost / season
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: Cost per Document Imported
+    metric: billed_cost / tax_documents_imported
     target: TBD
 maintainers:
   - FN: Kin Lane
