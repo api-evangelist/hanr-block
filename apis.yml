@@ -26,6 +26,8 @@ apis:
     description: >-
       The H&R Block API provides access to platform services and data for enterprise integration and automation.
 common:
+  - type: GitHubOrganization
+    url: https://github.com/hrblock-dsa
   - type: Website
     url: https://www.hrblock.com
 maintainers:
