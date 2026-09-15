@@ -1,0 +1,41 @@
+generated: '2026-09-14'
+method: searched
+source: >-
+  registry.npmjs.org search + package metadata, pypi.org/pypi JSON, and a search of H&R
+  Block's public web surface for first-party SDKs
+provider: H&R Block
+providerId: hanr-block
+description: >-
+  No first-party H&R Block client library exists on any public package registry. Recorded as
+  a measured zero, not an unchecked gap.
+package_count: 0
+packages: []
+rejected:
+  - name: hrblock-design-system-components
+    registry: npm
+    url: https://www.npmjs.com/package/hrblock-design-system-components
+    version: 1.0.0
+    published: '2021-05-26'
+    official: false
+    reason: >-
+      Name-matches but is not first-party: the sole maintainer is the personal npm account
+      "theapptester" (kevinshaj@outlook.com), there is no repository or homepage field, no
+      description, and the only release is a single 1.0.0 from 2021. Not an H&R Block SDK.
+registries_checked:
+  - registry: npm
+    query: hrblock
+    result: 1 name-match, rejected above
+  - registry: npm
+    query: hr block tax
+    result: no first-party match
+  - registry: pypi
+    query: 'hrblock, hrblock-api, hr-block'
+    result: 404 on all three
+  - registry: web
+    query: H&R Block SDK / client library / developer portal
+    result: >-
+      The only developer surface that exists (apiportal.hrblock.com, an Apigee portal) is
+      not reachable from the public internet, so no SDK download page could be read.
+note: >-
+  No `Packages` or `SDKs` pointer is wired in apis.yml — there is nothing to point at. This
+  file records that the registries were searched on 2026-09-14 and came back empty.

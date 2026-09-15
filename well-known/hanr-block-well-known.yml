@@ -1,0 +1,131 @@
+generated: '2026-09-14'
+method: probed
+source: live HTTPS probes of every host in apis.yml plus the hrblock.com subdomains DNS resolves
+provider: H&R Block
+providerId: hanr-block
+description: >-
+  Named-path /.well-known probe across every host this record knows plus the hrblock.com
+  subdomains that resolve in DNS. TWO real documents were served: login.hrblock.com
+  publishes a full OpenID Connect discovery document and an RFC 8414 OAuth 2.0
+  authorization-server metadata document (PingFederate). Both are saved verbatim. No
+  security.txt, api-catalog, ai-plugin.json or agent card was served on any host.
+notes: >-
+  www.hrblock.com and investors.hrblock.com answer 403 "Access Denied" from the Akamai
+  edge for EVERY path and every User-Agent tried (browser, Googlebot, bingbot, curl,
+  none) — that is a bot challenge against our network, not a statement that the paths are
+  absent. api.hrblock.com (the baseURL on record) does not resolve at all. The hosts that
+  look like H&R Block's API estate — developer.hrblock.com, apiportal.hrblock.com,
+  apigw.hrblock.com, mcp.hrblock.com, edge.hrblock.com, services.hrblock.com,
+  connect.hrblock.com — all resolve in public DNS but refuse or drop TCP on 80/443, i.e.
+  they are internal/partner-network only.
+hosts:
+  - host: login.hrblock.com
+    note: PingFederate authorization server — the only first-party host serving machine-readable documents.
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        file: hanr-block-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: hanr-block-oauth-authorization-server.json
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/openid-federation
+        status: 404
+      - path: /.well-known/webfinger
+        status: 404
+  - host: identity.hrblock.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: account.hrblock.com
+    note: MyBlock customer console; 404s are the app's own HTML not-found page.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: www.hrblock.com
+    note: >-
+      Akamai edge answers 403 "Access Denied" to every path from our network regardless of
+      User-Agent. Treat as blocked-to-us, not as absent.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+      - path: /llms.txt
+        status: 403
+      - path: /robots.txt
+        status: 403
+  - host: developer.hrblock.com
+    note: Resolves to 107.21.94.144; TCP 80 and 443 both time out. No service on the public internet.
+    documents:
+      - path: /.well-known/security.txt
+        status: 0
+      - path: /.well-known/openid-configuration
+        status: 0
+  - host: apiportal.hrblock.com
+    note: >-
+      Resolves to 52.143.252.214 and is the Apigee developer portal search engines have
+      indexed, but TCP 443 is refused from the public internet.
+    documents:
+      - path: /.well-known/security.txt
+        status: 0
+      - path: /.well-known/openid-configuration
+        status: 0
+  - host: api.hrblock.com
+    note: The baseURL on record. No A record — NXDOMAIN.
+    documents:
+      - path: /.well-known/security.txt
+        status: 0
+      - path: /.well-known/openid-configuration
+        status: 0

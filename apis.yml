@@ -2,6 +2,7 @@ aid: hanr-block
 url: https://raw.githubusercontent.com/api-evangelist/hanr-block/refs/heads/main/apis.yml
 name: H&R Block
 type: Index
+position: Producing
 deliveryModel:
   model: unknown
   open_source: false
@@ -30,14 +31,30 @@ tags:
   - Tax Preparation
   - Financial-Services
   - Fortune 1000
+  - Identity
+  - OAuth
+  - OpenID-Connect
+  - Consumer-Software
 tags_raw:
   - Tax Preparation
   - Financial Services
   - Fortune 1000
+  - Identity
+  - OAuth
+  - OpenID Connect
+  - Consumer Software
 description: >-
-  H&R Block is a major US corporation and Fortune 1000 company. The H&R Block API provides programmatic access to its platform services, data, and integrations for enterprise customers and partners.
+  H&R Block (NYSE: HRB) is a US tax-preparation company and Fortune 1000 constituent,
+  operating retail tax offices, consumer and small-business tax software, and the MyBlock
+  digital platform. It runs no public developer program: the hosts that make up its API
+  estate — api.hrblock.com, developer.hrblock.com, the apiportal.hrblock.com Apigee portal,
+  apigw, mcp, edge, services and connect — either do not resolve or refuse connections from
+  the public internet, and integration is arranged bilaterally through the tax-import
+  partner program. The one machine-readable contract H&R Block does serve publicly is the
+  OAuth 2.0 / OpenID Connect discovery metadata for its customer identity platform at
+  login.hrblock.com.
 created: '2026-04-19'
-modified: '2026-04-19'
+modified: '2026-09-14'
 specificationVersion: '0.23'
 apis:
   - aid: hanr-block:hanr-block-api
@@ -50,19 +67,89 @@ apis:
       - Financial Services
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.hrblock.com
-    humanURL: https://developer.hrblock.com
-    properties:
-      - url: https://developer.hrblock.com/docs
-        type: Documentation
+    humanURL: https://www.hrblock.com/partners/tax-import-partners/
     description: >-
-      The H&R Block API provides access to platform services and data for enterprise integration and automation.
+      The partner-facing H&R Block integration surface — tax-data import from financial
+      institutions, payroll providers and employer solutions. No public contract, reference
+      or portal is reachable: api.hrblock.com does not resolve and developer.hrblock.com /
+      apiportal.hrblock.com refuse connections from the public internet. Access is by
+      bilateral partner agreement through the tax-import partner program.
+  - aid: hanr-block:hanr-block-identity
+    name: H&R Block Identity (OAuth 2.0 / OpenID Connect)
+    tags:
+      - Identity
+      - OAuth
+      - OpenID-Connect
+    tags_raw:
+      - Identity
+      - OAuth
+      - OpenID Connect
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://login.hrblock.com
+    humanURL: https://account.hrblock.com
+    properties:
+      - url: well-known/hanr-block-openid-configuration.json
+        type: OpenIDConnect
+      - url: well-known/hanr-block-oauth-authorization-server.json
+        type: WellKnown
+      - url: authentication/hanr-block-authentication.yml
+        type: Authentication
+      - url: scopes/hanr-block-scopes.yml
+        type: OAuthScopes
+      - url: conformance/hanr-block-conformance.yml
+        type: Conformance
+    description: >-
+      H&R Block's customer identity platform, a PingFederate authorization server at
+      https://login.hrblock.com serving OpenID Connect discovery and RFC 8414 OAuth 2.0
+      authorization-server metadata anonymously (both HTTP 200). It advertises PKCE S256,
+      Pushed Authorization Requests, DPoP, mutual-TLS client authentication, dynamic client
+      registration, token introspection and revocation, the device grant, token exchange and
+      CIBA, plus the proprietary hrbGuaid and hrbUcid scopes. This is the only machine-readable
+      contract H&R Block publishes on the open internet.
 common:
-  - type: DomainSecurity
-    url: security/hanr-block-domain-security.yml
-  - type: GitHubOrganization
-    url: https://github.com/hrblock-dsa
   - type: Website
     url: https://www.hrblock.com
+  - type: GitHubOrganization
+    url: https://github.com/hrblock-dsa
+  - type: Support
+    url: https://www.hrblock.com/support/
+  - type: Blog
+    url: https://www.hrblock.com/tax-center/newsroom/
+  - type: Login
+    url: https://account.hrblock.com
+  - type: TermsOfService
+    url: https://www.hrblock.com/universal/terms/
+  - type: PrivacyPolicy
+    url: https://www.hrblock.com/universal/digital-online-mobile-privacy-principles/
+  - type: Authentication
+    url: authentication/hanr-block-authentication.yml
+  - type: OAuthScopes
+    url: scopes/hanr-block-scopes.yml
+  - type: OpenIDConnect
+    url: well-known/hanr-block-openid-configuration.json
+  - type: WellKnown
+    url: well-known/hanr-block-well-known.yml
+  - type: Conformance
+    url: conformance/hanr-block-conformance.yml
+  - type: Security
+    url: https://www.hrblock.com/responsible-disclosure-policy/
+  - type: VulnerabilityDisclosure
+    url: security/hanr-block-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/hanr-block-domain-security.yml
+  - type: Lifecycle
+    url: lifecycle/hanr-block-lifecycle.yml
+  - type: LLMsTxt
+    url: llms/hanr-block-llms.txt
+  - type: Plans
+    url: plans/hanr-block-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/hanr-block-rate-limits.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-14'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v3

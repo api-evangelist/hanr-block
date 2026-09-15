@@ -1,0 +1,34 @@
+generated: '2026-09-14'
+method: probed
+source: DNS + TCP probes of mcp.hrblock.com and the hrblock.com API estate
+provider: H&R Block
+providerId: hanr-block
+status: none
+description: >-
+  H&R Block ships no reachable MCP server. This file exists to record a real lead and its
+  negative result, so a later round does not re-discover it from scratch: the hostname
+  mcp.hrblock.com DOES resolve in public DNS (A 20.221.34.90, Azure), but TCP 443 drops —
+  exactly like every other host in H&R Block's API estate (apigw, apiportal, developer,
+  edge, services, connect). Nothing about the server — if one exists behind that name — is
+  observable from outside, so nothing about it is asserted.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+tools: []
+do_not_wire: >-
+  NO `MCPServer` pointer is wired in apis.yml and none should be added on the strength of
+  this file. A DNS record is not a server. Re-probe mcp.hrblock.com on a future pass; if it
+  ever answers a tools/list POST, this becomes a real artifact.
+x-evidence:
+  - url: https://mcp.hrblock.com/
+    http_status: 0
+    note: DNS A 20.221.34.90; TCP 443 connection timed out
+  - url: https://login.hrblock.com/.well-known/oauth-protected-resource
+    http_status: 404
+    note: >-
+      No RFC 9728 protected-resource metadata, which a hosted MCP server behind this
+      authorization server would normally publish.

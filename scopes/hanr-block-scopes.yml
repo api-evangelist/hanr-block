@@ -1,0 +1,43 @@
+generated: '2026-09-14'
+method: probed
+source: https://login.hrblock.com/.well-known/openid-configuration
+provider: H&R Block
+providerId: hanr-block
+description: >-
+  OAuth 2.0 scopes H&R Block's PingFederate authorization server advertises anonymously in
+  its discovery document. This is the complete scopes_supported array as published — no
+  scope reference page is reachable (developer.hrblock.com and apiportal.hrblock.com refuse
+  connections), so descriptions for the two proprietary scopes are marked unknown rather
+  than guessed.
+issuer: https://login.hrblock.com
+docs: null
+scope_count: 7
+scopes:
+  - name: openid
+    description: Standard OpenID Connect scope; requests an ID token.
+    standard: true
+  - name: profile
+    description: Standard OIDC claim set — name claims (givenName, sn).
+    standard: true
+  - name: email
+    description: Standard OIDC claim set — the mail claim.
+    standard: true
+  - name: address
+    description: Standard OIDC address claim set.
+    standard: true
+  - name: phone
+    description: Standard OIDC phone_number claim set.
+    standard: true
+  - name: hrbGuaid
+    description: >-
+      Proprietary H&R Block scope. Name suggests a global unique account identifier
+      (GUAID). No published definition is reachable; not inferred further.
+    standard: false
+  - name: hrbUcid
+    description: >-
+      Proprietary H&R Block scope. Name suggests a universal customer identifier (UCID).
+      No published definition is reachable; not inferred further.
+    standard: false
+x-evidence:
+  - url: https://login.hrblock.com/.well-known/openid-configuration
+    http_status: 200

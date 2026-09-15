@@ -1,0 +1,134 @@
+generated: '2026-09-14'
+method: probed
+source: https://login.hrblock.com/.well-known/openid-configuration
+provider: H&R Block
+providerId: hanr-block
+description: >-
+  Standards conformance asserted from the only machine-readable contract H&R Block serves
+  publicly: the OpenID Connect discovery and RFC 8414 OAuth 2.0 authorization-server
+  metadata documents at login.hrblock.com. Every entry below cites the exact field in that
+  document that carries it. Nothing is asserted from marketing prose.
+scope_note: >-
+  There is no public OpenAPI, AsyncAPI, GraphQL SDL or WSDL for any H&R Block API, so
+  contract-shape standards (JSON:API, RFC 9457, OData, pagination, idempotency) cannot be
+  assessed and are recorded as unknown rather than false.
+conformance:
+  - id: oauth2
+    name: OAuth 2.0 (RFC 6749)
+    conforms: true
+    evidence: >-
+      https://login.hrblock.com/.well-known/oauth-authorization-server returns 200 with
+      issuer, authorization_endpoint and token_endpoint.
+  - id: oidc
+    name: OpenID Connect Core 1.0
+    conforms: true
+    evidence: >-
+      https://login.hrblock.com/.well-known/openid-configuration returns 200 with
+      userinfo_endpoint, jwks_uri, id_token_signing_alg_values_supported and
+      subject_types_supported ["public","pairwise"].
+  - id: oidc-discovery
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: /.well-known/openid-configuration served anonymously, 200, application/json.
+  - id: rfc8414
+    name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+    conforms: true
+    evidence: /.well-known/oauth-authorization-server served anonymously, 200, application/json.
+  - id: rfc7636
+    name: PKCE (RFC 7636)
+    conforms: true
+    evidence: 'code_challenge_methods_supported: ["plain","S256"]'
+  - id: rfc9126
+    name: Pushed Authorization Requests (RFC 9126)
+    conforms: true
+    evidence: >-
+      pushed_authorization_request_endpoint = https://login.hrblock.com/as/par.oauth2;
+      require_pushed_authorization_requests is false, so PAR is offered but not enforced.
+  - id: rfc9449
+    name: DPoP — Demonstrating Proof of Possession (RFC 9449)
+    conforms: true
+    evidence: dpop_signing_alg_values_supported advertises RS/ES/PS 256-512.
+  - id: rfc8705
+    name: Mutual-TLS client authentication (RFC 8705)
+    conforms: true
+    evidence: 'token_endpoint_auth_methods_supported includes tls_client_auth'
+  - id: rfc9101
+    name: JWT-Secured Authorization Request / JAR (RFC 9101)
+    conforms: partial
+    evidence: >-
+      request_parameter_supported is true and request_object_signing_alg_values_supported
+      is populated, but request_uri_parameter_supported is false.
+  - id: rfc8628
+    name: OAuth 2.0 Device Authorization Grant (RFC 8628)
+    conforms: true
+    evidence: device_authorization_endpoint = https://login.hrblock.com/as/device_authz.oauth2
+  - id: rfc8693
+    name: OAuth 2.0 Token Exchange (RFC 8693)
+    conforms: true
+    evidence: 'grant_types_supported includes urn:ietf:params:oauth:grant-type:token-exchange'
+  - id: rfc7523
+    name: JWT Profile for Client Authentication and Authorization Grants (RFC 7523)
+    conforms: true
+    evidence: >-
+      grant_types_supported includes urn:ietf:params:oauth:grant-type:jwt-bearer;
+      token_endpoint_auth_methods_supported includes private_key_jwt and client_secret_jwt.
+  - id: rfc7522
+    name: SAML 2.0 Profile for Authorization Grants (RFC 7522)
+    conforms: true
+    evidence: 'grant_types_supported includes urn:ietf:params:oauth:grant-type:saml2-bearer'
+  - id: rfc7662
+    name: OAuth 2.0 Token Introspection (RFC 7662)
+    conforms: true
+    evidence: introspection_endpoint = https://login.hrblock.com/as/introspect.oauth2
+  - id: rfc7009
+    name: OAuth 2.0 Token Revocation (RFC 7009)
+    conforms: true
+    evidence: revocation_endpoint = https://login.hrblock.com/as/revoke_token.oauth2
+  - id: rfc7591
+    name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+    conforms: true
+    evidence: registration_endpoint = https://login.hrblock.com/as/clients.oauth2
+  - id: ciba
+    name: OpenID Connect Client-Initiated Backchannel Authentication (CIBA)
+    conforms: true
+    evidence: >-
+      backchannel_authentication_endpoint = https://login.hrblock.com/as/bc-auth.ciba;
+      backchannel_token_delivery_modes_supported ["poll","ping"].
+  - id: rfc9207
+    name: OAuth 2.0 Authorization Server Issuer Identification (RFC 9207)
+    conforms: false
+    evidence: 'authorization_response_iss_parameter_supported: false'
+  - id: rfc9396
+    name: Rich Authorization Requests (RFC 9396)
+    conforms: false
+    evidence: 'authorization_details_types_supported: [] (advertised but empty)'
+  - id: fapi
+    name: FAPI 1.0 / FAPI 2.0
+    conforms: false
+    evidence: >-
+      No FAPI profile is advertised, PAR is not required, the issuer parameter is not
+      supported, and the implicit and password grants plus alg "none" remain advertised —
+      all disqualifying for a FAPI baseline.
+  - id: rfc9457
+    name: Problem Details for HTTP APIs (RFC 9457)
+    conforms: unknown
+    evidence: No public API contract or error reference is reachable to assess.
+  - id: json-api
+    name: 'JSON:API'
+    conforms: unknown
+    evidence: No public API contract is reachable to assess.
+domain_standard:
+  assessed: true
+  found: false
+  note: >-
+    The domain standards for US tax preparation are IRS Modernized e-File (MeF) XML schemas
+    and, for consumer tax-data import, the financial-institution feeds behind H&R Block's
+    tax-import partner program. NONE of them is declared in any contract H&R Block serves
+    publicly — the only public contract is the OAuth/OIDC discovery document, which carries
+    no tax-domain schema, URN, or message type. Recorded as not found rather than asserted
+    from the fact that the company e-files. Reward-only check: no penalty.
+x-evidence:
+  - url: https://login.hrblock.com/.well-known/openid-configuration
+    http_status: 200
+  - url: https://login.hrblock.com/.well-known/oauth-authorization-server
+    http_status: 200

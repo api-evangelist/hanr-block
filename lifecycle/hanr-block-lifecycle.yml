@@ -1,0 +1,54 @@
+generated: '2026-09-14'
+method: probed
+source: live probes of hrblock.com hosts + web search for a published versioning/status policy
+provider: H&R Block
+providerId: hanr-block
+description: >-
+  H&R Block publishes no API versioning policy, no deprecation or Sunset-header policy, no
+  SLA and no live status page that we could reach. The one status surface that exists —
+  hrblock.statuspage.io — was provisioned at some point and now answers "Page Inactive".
+versioning:
+  scheme: unknown
+  current_version: null
+  note: >-
+    No public API reference is reachable (developer.hrblock.com and apiportal.hrblock.com
+    both refuse connections), so no versioning scheme can be observed. The OAuth/OIDC
+    surface at login.hrblock.com is unversioned by design — endpoints are fixed paths under
+    /as/ and /idp/.
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: unknown
+  note: No deprecation policy or RFC 8594 Sunset/Deprecation header documentation was found.
+sla:
+  published: false
+status_page:
+  live: false
+  url: https://hrblock.statuspage.io/
+  status: 200
+  state: inactive
+  note: >-
+    https://hrblock.statuspage.io/ 302s to /inactive and serves a page titled
+    "HR Block Status - Page Inactive". A Statuspage.io tenant under the hrblock handle exists
+    but publishes nothing. Because Statuspage.io resolves any subdomain, first-party
+    ownership is probable (the page title carries the company name) but NOT proven — and in
+    either case there is no live status feed, so NO StatusPage pointer is wired in apis.yml.
+  alternatives_checked:
+    - host: status.hrblock.com
+      result: NXDOMAIN
+    - host: trust.hrblock.com
+      result: NXDOMAIN
+changelog:
+  published: false
+  note: No dated API changelog or release-notes feed was found.
+x-evidence:
+  - url: https://hrblock.statuspage.io/
+    http_status: 200
+    note: redirects to /inactive, title "HR Block Status - Page Inactive"
+  - url: https://developer.hrblock.com/
+    http_status: 0
+    note: DNS A 107.21.94.144; TCP 80 and 443 time out
+  - url: https://apiportal.hrblock.com/
+    http_status: 0
+    note: DNS A 52.143.252.214; TCP 443 connection refused
