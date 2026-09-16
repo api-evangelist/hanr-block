@@ -32,9 +32,9 @@ tags:
   - Financial-Services
   - Fortune 1000
   - Identity
-  - OAuth
-  - OpenID-Connect
-  - Consumer-Software
+  - Authentication
+  - OpenID Connect
+  - Consumer Software
 tags_raw:
   - Tax Preparation
   - Financial Services
@@ -78,8 +78,8 @@ apis:
     name: H&R Block Identity (OAuth 2.0 / OpenID Connect)
     tags:
       - Identity
-      - OAuth
-      - OpenID-Connect
+      - Authentication
+      - OpenID Connect
     tags_raw:
       - Identity
       - OAuth
