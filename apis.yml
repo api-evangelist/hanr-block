@@ -29,20 +29,21 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hanr-block.png
 tags:
   - Tax Preparation
-  - Financial-Services
+  - Financial Services
   - Fortune 1000
   - Identity
   - Authentication
-  - OpenID Connect
   - Consumer Software
+  - Tax
 tags_raw:
   - Tax Preparation
   - Financial Services
   - Fortune 1000
   - Identity
   - OAuth
-  - OpenID Connect
   - Consumer Software
+  - Financial-Services
+  - Tax
 description: >-
   H&R Block (NYSE: HRB) is a US tax-preparation company and Fortune 1000 constituent,
   operating retail tax offices, consumer and small-business tax software, and the MyBlock
@@ -61,10 +62,11 @@ apis:
     name: H&R Block API
     tags:
       - Tax Preparation
-      - Financial-Services
+      - Financial Services
     tags_raw:
       - Tax Preparation
       - Financial Services
+      - Financial-Services
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.hrblock.com
     humanURL: https://www.hrblock.com/partners/tax-import-partners/
@@ -153,3 +155,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 11
   pass: local-v3
+x-tags-removed:
+- OpenID Connect
