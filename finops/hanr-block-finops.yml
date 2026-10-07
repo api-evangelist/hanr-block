@@ -116,10 +116,8 @@ apis:
 unitEconomics:
   - name: Cost per Tax-Filing Season
     metric: billed_cost / season
-    target: TBD
   - name: Cost per Document Imported
     metric: billed_cost / tax_documents_imported
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
