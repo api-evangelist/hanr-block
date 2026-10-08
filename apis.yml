@@ -109,6 +109,8 @@ apis:
       CIBA, plus the proprietary hrbGuaid and hrbUcid scopes. This is the only machine-readable
       contract H&R Block publishes on the open internet.
 common:
+  - type: FinOps
+    url: finops/hanr-block-finops.yml
   - type: Website
     url: https://www.hrblock.com
   - type: GitHubOrganization
