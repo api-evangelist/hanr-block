@@ -1,4 +1,4 @@
-# H&R Block (hanr-block)
+# H&R Block
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,23 +64,116 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-H&R Block is a major US corporation and Fortune 1000 company. The H&R Block API provides programmatic access to its platform services, data, and integrations for enterprise customers and partners.
+H&R Block (NYSE: HRB) is a US tax-preparation company and Fortune 1000 constituent, operating retail tax offices, consumer and small-business tax software, and the MyBlock digital platform. It runs no public developer program: the hosts that make up its API estate — api.hrblock.com, developer.hrblock.com, the apiportal.hrblock.com Apigee portal, apigw, mcp, edge, services and connect — either do not resolve or refuse connections from the public internet, and integration is arranged bilaterally through the tax-import partner program. The one machine-readable contract H&R Block does serve publicly is the OAuth 2.0 / OpenID Connect discovery metadata for its customer identity platform at login.hrblock.com.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/hanr-block/refs/heads/main/apis.yml)
+**Areas:** Tax Preparation · Financial Services · Fortune 1000 · Identity · Authentication · Consumer Software · Tax
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## H&R Block on APIs.io
 
-## Tags:
+Everything profiled for H&R Block is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hanr-block/](https://apis.io/providers/hanr-block/)** — or go straight to one of the APIs or properties below.
 
- - Tax Preparation, Financial Services
+### APIs (2)
 
-## Timestamps
+- [H&R Block API](https://apis.io/apis/hanr-block/hanr-block-api/) — The partner-facing H&R Block integration surface — tax-data import from financial institutions, payroll providers and employer solutions. No public…
+- [H&R Block Identity (OAuth 2.0 / OpenID Connect)](https://apis.io/apis/hanr-block/hanr-block-identity/) — H&R Block's customer identity platform, a PingFederate authorization server at https://login.hrblock.com serving OpenID Connect discovery and RFC 8414 OAuth…
 
-- **Created:** 2026-04-19
-- **Modified:** 2026-04-19
+### Published properties
 
-## Maintainers
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**FN:** Kin Lane
+#### Security (3)
 
-**Email:** kin@apievangelist.com
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hanr Block Authentication](https://apis.io/security/hanr-block/hanr-block-authentication/)
+- [Hanr Block Domain Security](https://apis.io/security/hanr-block/hanr-block-domain-security/)
+- [Hanr Block Vulnerability Disclosure](https://apis.io/security/hanr-block/hanr-block-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Hanr Block Scopes](https://apis.io/scopes/hanr-block/hanr-block-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Hanr Block Plans Pricing](https://apis.io/plans/hanr-block/hanr-block-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hanr Block Rate Limits](https://apis.io/rate-limits/hanr-block/hanr-block-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Hanr Block Finops](https://apis.io/finops/hanr-block/hanr-block-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.hrblock.com)
+- [Support](https://www.hrblock.com/support/)
+- [Blog](https://www.hrblock.com/tax-center/newsroom/)
+- [Security](https://www.hrblock.com/responsible-disclosure-policy/)
+- [Terms of service](https://www.hrblock.com/universal/terms/)
+- [Privacy policy](https://www.hrblock.com/universal/digital-online-mobile-privacy-principles/)
+- [GitHub](https://github.com/hrblock-dsa)
+
+## API Evangelist rating
+
+**Kin Score 25.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 32.9 |
+
+**Agent readiness 15.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hanr-block/](https://apis.io/providers/hanr-block/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for H&R Block: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hanr-block/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
