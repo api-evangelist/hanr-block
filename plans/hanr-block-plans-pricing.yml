@@ -1,0 +1,63 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: H&R Block
+providerId: hanr-block
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Tax Preparation
+  - Financial Services
+description: H&R Block sells tax-preparation software and services directly to consumers and small
+  businesses. There is no public developer API or plan catalog; any partner / integration access is
+  via bilateral agreement (e.g. with employers, financial institutions, or partner software).
+notes: No public API plans or pricing are published. The placeholder Enterprise plan records the
+  expected commercial shape; reconcile against the partner agreement.
+sources:
+  - https://www.hrblock.com/
+plans:
+  - id: hanr-block-enterprise
+    name: Enterprise / Partner
+    type: enterprise
+    description: Bilateral partner agreement for tax-data integration (employer W-2 imports, fintech
+      partnerships, etc.). Contract-defined volumes and SLAs.
+    entries:
+      - label: Plan price
+        description: Custom-quoted via the partner agreement
+        name: plan_price
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: US
+        domains:
+          - https://api.hrblock.com
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Partner Account Manager
+      - name: H&R Block API
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - period
+  plans:
+  - name: Enterprise / Partner
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
