@@ -16,15 +16,18 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: enterprise
-  onboarding: unknown
+  onboarding: approval
   trial: false
   try_now: false
   public: false
-  label: Enterprise
-  confidence: medium
+  label: Enterprise · Requires approval
+  confidence: high
   source:
   - plans
-  generated: '2026-07-22'
+  - authentication
+  - scopes
+  - security
+  generated: '2026-11-02'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hanr-block.png
 tags:
